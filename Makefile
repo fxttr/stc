@@ -1,10 +1,10 @@
-CC=gcc
+CC=clang
 
 WARN= -Wall -Wextra -Wno-unused-parameter -Wno-deprecated-declarations -Wformat-security -Wformat -Werror=format-security -Wstack-protector
 SEC= -march=native -fstack-protector-all --param ssp-buffer-size=4 -fpie -ftrapv -D_FORTIFY_SOURCE=2
 
-CFLAGS= ${SEC} ${WARN} -std=c99 -pedantic -D_XOPEN_SOURCE=600 -Wvariadic-macros -O2 -I/usr/include/freetype2
-LDFLAGS= -lc -lm -lrt -lX11 -lutil -lXft -lXrender -lfontconfig -Wl,-z,relro,-z,now -pie
+CFLAGS= ${SEC} ${WARN} -std=c99 -pedantic -D_XOPEN_SOURCE=600 -Wvariadic-macros -O2 -I/usr/local/include -I/usr/local/include/freetype2
+LDFLAGS= -L/usr/local/lib -lc -lm -lrt -lX11 -lutil -lXft -lXrender -lfontconfig -Wl,-z,relro,-z,now -pie
 
 SRC = src/stc.c
 OBJECT = stc.o
@@ -24,10 +24,10 @@ clean:
 	@rm -rf stc *.o *~
 
 install: all
-	@echo installing executable file to /usr/bin
-	@mkdir -p /usr/bin
-	@cp -f stc /usr/bin
-	@chmod 755 /usr/bin/stc
+	@echo installing executable file to /usr/local/bin
+	@mkdir -p /usr/local/bin
+	@cp -f stc /usr/local/bin
+	@chmod 755 /usr/local/bin/stc
 
 uninstall:
 	@echo removing executable file from ${DESTDIR}${PREFIX}/bin
