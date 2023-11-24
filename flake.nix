@@ -22,7 +22,6 @@
       in
       {
         devShells.default = pkgs.mkShell rec {
-          # Update the name to something that suites your project.
           name = "stc";
 
           packages = with pkgs; [

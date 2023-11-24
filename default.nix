@@ -10,17 +10,16 @@ llvmPackages.stdenv.mkDerivation rec {
 
   src = ./.;
 
+  prePatch = ''
+    sed -i "s@/usr@$out@" Makefile
+  '';
+
   nativeBuildInputs = [ gnumake ];
 
   buildInputs = [
     xorg.libX11
     xorg.libXft
   ];
-
-  installPhase = ''                                                                               
-    mkdir -p $out/bin
-    cp stc $out/bin
-  '';
 
   meta = with lib; {
     homepage = "https://github.com/fxttr/stc";
