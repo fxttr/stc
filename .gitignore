@@ -1,4 +1,8 @@
 # Generated files
-.direnv
-result
+.*
+!.clang-format
+!.gitignore
 stc
+result
+compile_commands.json
+*.o
